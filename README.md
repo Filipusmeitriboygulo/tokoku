@@ -93,7 +93,7 @@ Mencatat setiap transaksi pembelian yang dilakukan oleh admin toko.
 atau jika menggunakan nodemon:
 
 npm run dev
-3. Buka aplikasi
+3. **Buka aplikasi**
 
 Akses di browser:
 👉 http://localhost:3000
