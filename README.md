@@ -76,7 +76,7 @@ Mencatat setiap transaksi pembelian yang dilakukan oleh admin toko.
 
 ## 🚀 Cara Menjalankan
 
-1. **Import database**
+1. **Import database dan Download atau clone repository ini**
    - Jalankan SQL berikut (atau file `tokoku_db.sql`):
      ```sql
      CREATE DATABASE tokoku_db;
