@@ -1,0 +1,143 @@
+<!DOCTYPE html>
+<html lang="id">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width,initial-scale=1" />
+    <title>Pembelian - Admin</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+  </head>
+  <body class="bg-gray-100 min-h-screen p-6">
+    <div class="max-w-6xl mx-auto">
+      <div class="flex justify-between items-center mb-6">
+        <h1 class="text-2xl font-bold">🛒 Pembelian</h1>
+        <a href="/" class="text-sm text-indigo-600">⬅ Kembali</a>
+      </div>
+
+      <!-- form tambah pembelian -->
+      <div class="bg-white p-6 rounded-lg shadow mb-6">
+        <form
+          action="/pembelian"
+          method="POST"
+          class="grid grid-cols-1 md:grid-cols-4 gap-4 items-end"
+        >
+          <div>
+            <label class="block text-sm font-medium text-gray-700"
+              >Produk</label
+            >
+            <select
+              name="id_produk"
+              required
+              class="mt-1 block w-full border rounded p-2"
+            >
+              <% produk.forEach(p => { %>
+              <option value="<%= p.id %>">
+                <%= p.nama_produk %> — Rp <%= Number(p.harga).toLocaleString()
+                %> (stok: <%= p.jumlah_stok %>)
+              </option>
+              <% }) %>
+            </select>
+          </div>
+
+          <div>
+            <label class="block text-sm font-medium text-gray-700"
+              >Jumlah</label
+            >
+            <input
+              type="number"
+              name="jumlah"
+              min="1"
+              required
+              class="mt-1 block w-full border rounded p-2"
+              placeholder="Jumlah"
+            />
+          </div>
+
+          <div class="md:col-span-2 text-right">
+            <button
+              type="submit"
+              class="bg-green-600 text-white px-6 py-2 rounded-lg font-semibold hover:bg-green-700 transition"
+            >
+              Tambah Pembelian
+            </button>
+          </div>
+        </form>
+      </div>
+
+      <!-- tabel riwayat pembelian -->
+      <div class="bg-white shadow rounded-lg overflow-hidden">
+        <table class="min-w-full">
+          <thead class="bg-gray-50">
+            <tr>
+              <th class="px-6 py-3 text-left text-sm font-medium text-gray-500">
+                ID
+              </th>
+              <th class="px-6 py-3 text-left text-sm font-medium text-gray-500">
+                Produk
+              </th>
+              <th class="px-6 py-3 text-left text-sm font-medium text-gray-500">
+                Jumlah
+              </th>
+              <th class="px-6 py-3 text-left text-sm font-medium text-gray-500">
+                Total
+              </th>
+              <th class="px-6 py-3 text-left text-sm font-medium text-gray-500">
+                Status
+              </th>
+              <th class="px-6 py-3 text-left text-sm font-medium text-gray-500">
+                Tanggal
+              </th>
+              <th class="px-6 py-3 text-left text-sm font-medium text-gray-500">
+                Aksi
+              </th>
+            </tr>
+          </thead>
+          <tbody class="bg-white divide-y divide-gray-200">
+            <% pembelian.forEach(b => { %>
+            <tr>
+              <td class="px-6 py-4 text-sm text-gray-700"><%= b.id %></td>
+              <td class="px-6 py-4 text-sm font-semibold">
+                <%= b.nama_produk %>
+              </td>
+              <td class="px-6 py-4 text-sm"><%= b.jumlah %></td>
+              <td class="px-6 py-4 text-sm text-indigo-600">
+                Rp <%= Number(b.total_harga).toLocaleString() %>
+              </td>
+              <td class="px-6 py-4 text-sm">
+                <% if (b.status === 'selesai') { %>
+                <span class="bg-green-100 text-green-700 px-2 py-1 rounded"
+                  >Selesai</span
+                >
+                <% } else { %>
+                <span class="bg-red-100 text-red-700 px-2 py-1 rounded"
+                  >Dibatalkan</span
+                >
+                <% } %>
+              </td>
+              <td class="px-6 py-4 text-sm text-gray-600">
+                <%= new Date(b.tanggal_pembelian).toLocaleString() %>
+              </td>
+              <td class="px-6 py-4 text-sm">
+                <% if (b.status === 'selesai') { %>
+                <form
+                  action="/pembelian/<%= b.id %>/cancel"
+                  method="POST"
+                  onsubmit="return confirm('Yakin batalkan pembelian?')"
+                >
+                  <button
+                    class="bg-red-600 text-white px-3 py-1 rounded hover:bg-red-700"
+                  >
+                    Batalkan
+                  </button>
+                </form>
+                <% } else { %>
+                <span class="text-gray-400">-</span>
+                <% } %>
+              </td>
+            </tr>
+            <% }) %>
+          </tbody>
+        </table>
+      </div>
+    </div>
+  </body>
+</html>

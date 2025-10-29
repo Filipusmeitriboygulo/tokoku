@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width,initial-scale=1" />
+  <title>Admin TokoKu</title>
+  <script src="https://cdn.tailwindcss.com"></script>
+</head>
+<body class="bg-gradient-to-br from-indigo-600 via-purple-600 to-pink-500 min-h-screen flex flex-col">
+  <nav class="flex items-center justify-between p-6 max-w-6xl mx-auto w-full">
+    <h1 class="text-white text-2xl font-bold">🛍️ TokoKu - Admin</h1>
+    <div class="space-x-4">
+      <a href="/produk" class="bg-white/20 text-white px-4 py-2 rounded-lg hover:bg-white/30 transition">Produk</a>
+      <a href="/pembelian" class="bg-white/20 text-white px-4 py-2 rounded-lg hover:bg-white/30 transition">Pembelian</a>
+    </div>
+  </nav>
+
+  <main class="flex-1 flex items-center justify-center px-4">
+    <div class="bg-white/10 p-10 rounded-2xl text-center text-white max-w-3xl w-full backdrop-blur">
+      <h2 class="text-4xl font-extrabold mb-4">Selamat datang, Admin!</h2>
+      <p class="mb-6 opacity-90">Kelola produk, stok, dan pembelian dengan cepat melalui panel admin ini.</p>
+      <div class="flex justify-center gap-4">
+        <a href="/produk" class="bg-white text-indigo-600 px-6 py-3 rounded-lg font-semibold">📦 Kelola Produk</a>
+        <a href="/pembelian" class="bg-white text-green-600 px-6 py-3 rounded-lg font-semibold">🛒 Kelola Pembelian</a>
+      </div>
+    </div>
+  </main>
+
+  <footer class="py-4 text-center text-white/80">
+    © 2025 TokoKu
+  </footer>
+</body>
+</html>
